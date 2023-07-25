@@ -2,7 +2,7 @@ import { createActionGroup, props } from '@ngrx/store';
 import { RegisterRequestInterface } from '../types/registerRequest.interface';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { BackEndErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
-import { LoginRequestInterface } from '../types/lloginRequest.interface';
+import { LoginRequestInterface } from '../types/loginRequest.interface';
 
 export const authActions = createActionGroup({
   source: 'auth',
