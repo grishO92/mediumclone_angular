@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { authActions } from './actions';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PersistanceService } from 'src/app/shared/services/persistence.service';
+import { PersistanceService } from 'src/app/shared/services/persistance.service';
 import { Router } from '@angular/router';
 
 export const registerEffect = createEffect(
@@ -44,6 +44,9 @@ export const getCurrentUserEffect = createEffect(
     return actions$.pipe(
       ofType(authActions.getCurrentUser),
       switchMap(() => {
+        const token = persistanceService.get('accessToken');
+        if (!token) return of(authActions.getCurrentUserFailure());
+
         return authService.getCurrentUser().pipe(
           map((currentUser: CurrentUserInterface) => {
             return authActions.getCurrentUserSuccess({ currentUser });
