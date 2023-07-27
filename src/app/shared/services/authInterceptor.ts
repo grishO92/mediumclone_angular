@@ -1,14 +1,14 @@
-import { HttpInterceptor, HttpInterceptorFn } from '@angular/common/http';
-import { PersistanceService } from './persistence.service';
+import { HttpInterceptorFn } from '@angular/common/http';
+import { PersistanceService } from './persistance.service';
 import { inject } from '@angular/core';
 
-export const authInterceptor: HttpInterceptorFn = (req, next) => {
+export const authInterceptor: HttpInterceptorFn = (request, next) => {
   const persistanceService = inject(PersistanceService);
   const token = persistanceService.get('accessToken');
-  req = req.clone({
+  request = request.clone({
     setHeaders: {
       Authorization: token ? `Token ${token}` : '',
     },
   });
-  return next(req);
+  return next(request);
 };
