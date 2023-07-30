@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './feed.component.html',
   standalone: true,
 })
-export class Feed {}
+export class FeedComponent {}
