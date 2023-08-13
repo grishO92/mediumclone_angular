@@ -1,4 +1,3 @@
-import { routerNavigatedAction } from '@ngrx/router-store';
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { PopularTagsStateInterface } from '../types/popularTagsState.interface';
 import { popularTagsActions } from './actions';
