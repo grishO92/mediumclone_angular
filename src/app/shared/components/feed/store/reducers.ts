@@ -1,9 +1,9 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { FeedStoreInterface } from '../types/feedState.interface';
+import { FeedStateInterface } from '../types/feedState.interface';
 import { feedActions } from './actions';
 import { routerNavigatedAction } from '@ngrx/router-store';
 
-const initialState: FeedStoreInterface = {
+const initialState: FeedStateInterface = {
   isLoading: false,
   error: null,
   data: null,
