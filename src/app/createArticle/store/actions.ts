@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { ArticleRequestInterface } from 'src/app/shared/services/articleRequest.interface';
+import { ArticleRequestInterface } from 'src/app/shared/types/articleRequest.interface';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
 import { BackEndErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
 

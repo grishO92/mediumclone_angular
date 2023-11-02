@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
-import { ArticleFormComponent } from 'src/app/shared/components/articleFrom/articleForm.component';
-import { ArticleFormValuesInterface } from 'src/app/shared/components/articleFrom/types/articleFormValues.interface';
+import { ArticleFormComponent } from 'src/app/shared/components/articleForm/articleForm.component';
+import { ArticleFormValuesInterface } from 'src/app/shared/components/articleForm/types/articleFormValues.interface';
 import {
   selectIsSubmitting,
   selectValidationErrors,
 } from '../../store/reducers';
-import { ArticleRequestInterface } from 'src/app/shared/services/articleRequest.interface';
+import { ArticleRequestInterface } from 'src/app/shared/types/articleRequest.interface';
 import { createArticleActions } from '../../store/actions';
 import { CommonModule } from '@angular/common';
 
