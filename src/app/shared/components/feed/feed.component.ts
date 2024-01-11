@@ -7,6 +7,7 @@ import {
   inject,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { feedActions } from './store/actions';
 import { combineLatest } from 'rxjs';
 import { selectError, selectFeedData, selectIsLoading } from './store/reducers';
 import { CommonModule } from '@angular/common';
@@ -15,9 +16,9 @@ import { ErrorMessageComponent } from '../error/errorMessage.component';
 import { LoadingComponent } from '../loading/loading.component';
 import { environment } from 'src/environments/environment';
 import { PaginationComponent } from '../pagination/pagination.component';
+import queryString from 'query-string';
 import { TagListComponent } from '../tagList/tagList.component';
 import { AddToFavoritesComponent } from '../addToFavorites/addToFavorites.component';
-import { FeedService } from '../../services/fetchFeed.service';
 
 @Component({
   selector: 'mc-feed',
@@ -37,7 +38,6 @@ export class FeedComponent implements OnInit, OnChanges {
   private store = inject(Store);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
-  private fetchFeed = inject(FeedService);
 
   @Input() apiUrl: string = '';
 
@@ -54,7 +54,7 @@ export class FeedComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page'] || '1');
-      this.fetchFeed.getFeed(this.apiUrl, this.currentPage, this.limit);
+      this.fetchFeed();
     });
   }
 
@@ -63,7 +63,18 @@ export class FeedComponent implements OnInit, OnChanges {
       !changes['apiUrl'].firstChange &&
       changes['apiUrl'].currentValue !== changes['apiUrl'].previousValue;
 
-    if (isApiChanged)
-      this.fetchFeed.getFeed(this.apiUrl, this.currentPage, this.limit);
+    if (isApiChanged) this.fetchFeed();
+  }
+
+  fetchFeed(): void {
+    const offset = this.currentPage * this.limit - this.limit;
+    const parsedUrl = queryString.parseUrl(this.apiUrl);
+    const stringifiedParams = queryString.stringify({
+      limit: this.limit,
+      offset,
+      ...parsedUrl.query,
+    });
+    const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
+    this.store.dispatch(feedActions.getFeed({ url: apiUrlWithParams }));
   }
 }
