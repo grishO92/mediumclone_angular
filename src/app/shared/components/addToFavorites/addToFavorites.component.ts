@@ -10,7 +10,7 @@ import { addToFavoritesActions } from './store/actions';
   imports: [CommonModule],
 })
 export class AddToFavoritesComponent {
-  store = inject(Store);
+  private store = inject(Store);
 
   @Input() isFavorited: boolean = false;
   @Input() favoritesCount: number = 0;

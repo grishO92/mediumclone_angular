@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { getPopularTagsResponseInterface } from '../types/getPopularTagsResponse.interface';
@@ -9,7 +9,7 @@ import { PopularTagType } from 'src/app/shared/types/popularTag.type';
   providedIn: 'root',
 })
 export class PopularTagsService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getPopularTags(): Observable<PopularTagType[]> {
     const url = environment.apiUrl + '/tags';

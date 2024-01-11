@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopBarComponent } from './shared/components/topBar/topBar.component';
 import { Store } from '@ngrx/store';
@@ -11,7 +11,7 @@ import { authActions } from './auth/store/actions';
   imports: [RouterOutlet, TopBarComponent],
 })
 export class AppComponent implements OnInit {
-  constructor(private store: Store) {}
+  private store = inject(Store);
 
   ngOnInit(): void {
     this.store.dispatch(authActions.getCurrentUser());

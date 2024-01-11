@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
@@ -12,8 +12,9 @@ import { selectCurrentUser } from 'src/app/auth/store/reducers';
   imports: [CommonModule, RouterLink],
 })
 export class TopBarComponent {
+  private store = inject(Store);
+
   data$ = combineLatest({
     currentUser$: this.store.select(selectCurrentUser),
   });
-  constructor(private store: Store) {}
 }

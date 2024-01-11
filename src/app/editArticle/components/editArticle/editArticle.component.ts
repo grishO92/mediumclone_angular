@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { combineLatest, filter, map, Observable } from 'rxjs';
@@ -23,6 +23,9 @@ import {
   imports: [ArticleFormComponent, CommonModule, LoadingComponent],
 })
 export class EditArticleComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private store = inject(Store);
+
   initialValues$: Observable<ArticleFormValuesInterface> = this.store.pipe(
     select(selectArticle),
     filter((article): article is ArticleInterface => article !== null),
@@ -42,8 +45,6 @@ export class EditArticleComponent implements OnInit {
     isLoading: this.store.select(selectIsLoading),
     initialValues: this.initialValues$,
   });
-
-  constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.store.dispatch(editArticleActions.getArticle({ slug: this.slug }));

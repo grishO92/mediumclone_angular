@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getFeedResponseInterface } from '../types/getFeedResponse.interface';
 import { environment } from 'src/environments/environment.development';
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class FeedService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getFeed(url: string): Observable<getFeedResponseInterface> {
     const fullUrl = environment.apiUrl + url;

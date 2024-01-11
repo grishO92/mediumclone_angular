@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectCurrentUser } from 'src/app/auth/store/reducers';
@@ -11,9 +11,9 @@ import { selectCurrentUser } from 'src/app/auth/store/reducers';
   imports: [RouterLink, RouterLinkActive, CommonModule],
 })
 export class FeedTogglerComponent {
+  private store = inject(Store);
+
   @Input() tagName?: string;
 
   currentUser$ = this.store.select(selectCurrentUser);
-
-  constructor(private store: Store) {}
 }

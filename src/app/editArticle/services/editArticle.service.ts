@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ArticleRequestInterface } from 'src/app/shared/types/articleRequest.interface';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class EditArticleService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   updateArticle(
     slug: string,

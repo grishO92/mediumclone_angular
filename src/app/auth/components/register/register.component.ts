@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { authActions } from '../../store/actions';
@@ -25,6 +25,9 @@ import { BackendErrorMessages } from 'src/app/shared/components/backendErrorMess
   ],
 })
 export class RegisterComponent {
+  private fb = inject(FormBuilder);
+  private store = inject(Store);
+
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
@@ -35,8 +38,6 @@ export class RegisterComponent {
     isSubmitting: this.store.select(selectIsSubmitting),
     backendErrors: this.store.select(selectValidationErrors),
   });
-
-  constructor(private fb: FormBuilder, private store: Store) {}
 
   onSubmit() {
     const request: RegisterRequestInterface = {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { articleActions } from '../store/actions';
@@ -28,6 +28,9 @@ import { TagListComponent } from 'src/app/shared/components/tagList/tagList.comp
   ],
 })
 export class ArticleComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private store = inject(Store);
+
   slug = this.route.snapshot.paramMap.get('slug') ?? '';
 
   isAuthor$ = combineLatest({
@@ -53,8 +56,6 @@ export class ArticleComponent implements OnInit {
     article: this.store.select(selectArticleData),
     isAuthor: this.isAuthor$,
   });
-
-  constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.store.dispatch(articleActions.getArticle({ slug: this.slug }));

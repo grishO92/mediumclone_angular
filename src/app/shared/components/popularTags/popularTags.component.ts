@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { popularTagsActions } from './store/actions';
 import { combineLatest } from 'rxjs';
@@ -19,13 +19,13 @@ import { RouterLink } from '@angular/router';
   imports: [CommonModule, LoadingComponent, ErrorMessageComponent, RouterLink],
 })
 export class PopularTagsComponent implements OnInit {
+  private store = inject(Store);
+
   data$ = combineLatest({
     popularTags: this.store.select(selectPopularTagsData),
     isLoading: this.store.select(selectIsLoading),
     error: this.store.select(selectError),
   });
-
-  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.store.dispatch(popularTagsActions.getPopularTags());

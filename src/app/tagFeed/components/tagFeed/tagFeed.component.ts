@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { BannerComponent } from 'src/app/shared/components/banner/banner.component';
 import { FeedComponent } from 'src/app/shared/components/feed/feed.component';
@@ -17,10 +17,10 @@ import { PopularTagsComponent } from 'src/app/shared/components/popularTags/popu
   ],
 })
 export class TagFeedComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+
   apiUrl: string = '';
   tagName: string = '';
-
-  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

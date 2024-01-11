@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Subscription, combineLatest, filter } from 'rxjs';
@@ -17,6 +17,9 @@ import { authActions } from 'src/app/auth/store/actions';
   imports: [CommonModule, BackendErrorMessages, ReactiveFormsModule],
 })
 export class SettingsComponent implements OnInit, OnDestroy {
+  private fb = inject(FormBuilder);
+  private store = inject(Store);
+
   form = this.fb.nonNullable.group({
     image: '',
     username: '',
@@ -32,8 +35,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   });
 
   currentUserSubscription?: Subscription;
-
-  constructor(private fb: FormBuilder, private store: Store) {}
 
   ngOnInit(): void {
     this.currentUserSubscription = this.store

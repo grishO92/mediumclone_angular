@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs';
 import { ArticleFormComponent } from 'src/app/shared/components/articleForm/articleForm.component';
@@ -18,6 +18,8 @@ import { CommonModule } from '@angular/common';
   imports: [ArticleFormComponent, CommonModule],
 })
 export class CreateArticleComponent {
+  private store = inject(Store);
+
   initialValues = {
     title: '',
     description: '',
@@ -29,8 +31,6 @@ export class CreateArticleComponent {
     isSubmitting: this.store.select(selectIsSubmitting),
     backendErrors: this.store.select(selectValidationErrors),
   });
-
-  constructor(private store: Store) {}
 
   onSubmit(articleFormValues: ArticleFormValuesInterface): void {
     const request: ArticleRequestInterface = {

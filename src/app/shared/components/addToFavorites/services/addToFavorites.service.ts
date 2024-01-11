@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
 import { ArticleResponseInterface } from 'src/app/shared/types/articleResponse.interface';
@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AddToFavoritesService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   addToFavorites(slug: string): Observable<ArticleInterface> {
     const url: string = this.getUrl(slug);
