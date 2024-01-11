@@ -10,9 +10,6 @@ import { Store } from '@ngrx/store';
 export class FeedService {
   private store = inject(Store);
 
-  currentPage: number = 0;
-  limit = environment.limit;
-
   getFeed(apiUrl: string, currentPage: number, limit: number): void {
     const offset = currentPage * limit - limit;
     const parsedUrl = queryString.parseUrl(apiUrl);
