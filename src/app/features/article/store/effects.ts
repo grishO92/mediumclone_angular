@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { switchMap, map, catchError, of, tap } from 'rxjs';
 import { ArticleService as SharedArticleService } from 'src/app/shared/services/article.service';
-import { articleActions } from 'src/app/article/store/actions';
+import { articleActions } from 'src/app/features/article/store/actions';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
 import { ArticleService } from '../services/article.service';
 import { Router } from '@angular/router';

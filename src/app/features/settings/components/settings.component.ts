@@ -2,13 +2,13 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { Subscription, combineLatest, filter } from 'rxjs';
-import { selectCurrentUser } from 'src/app/auth/store/reducers';
+import { selectCurrentUser } from 'src/app/features/auth/store/reducers';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { selectIsSubmitting, selectValidationErrors } from '../store/reducers';
 import { CommonModule } from '@angular/common';
 import { BackendErrorMessages } from 'src/app/shared/components/backendErrorMessages/backendErrorMessages.component';
 import { CurrentUserRequestInterface } from 'src/app/shared/types/currentUserRequest.interface';
-import { authActions } from 'src/app/auth/store/actions';
+import { authActions } from 'src/app/features/auth/store/actions';
 
 @Component({
   selector: 'mc-settings',

@@ -5,9 +5,12 @@ import { appRoutes } from './app/app.routes';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
-import { authFeatureKey, authReducer } from './app/auth/store/reducers';
+import {
+  authFeatureKey,
+  authReducer,
+} from './app/features/auth/store/reducers';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import * as authEffects from './app/auth/store/effects';
+import * as authEffects from './app/features/auth/store/effects';
 import * as feedEffects from './app/shared/components/feed/store/effects';
 import * as popularTagsEffects from './app/shared/components/popularTags/store/effects';
 import * as addToFavoritesEffects from './app/shared/components/addToFavorites/store/effects';

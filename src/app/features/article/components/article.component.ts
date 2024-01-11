@@ -8,7 +8,7 @@ import {
   selectError,
   selectIsLoading,
 } from '../store/reducers';
-import { selectCurrentUser } from 'src/app/auth/store/reducers';
+import { selectCurrentUser } from 'src/app/features/auth/store/reducers';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';

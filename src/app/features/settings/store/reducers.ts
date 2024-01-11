@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { SettingsTypeInterface } from '../types/settingsType.interface';
-import { authActions } from 'src/app/auth/store/actions';
+import { authActions } from 'src/app/features/auth/store/actions';
 import { routerNavigatedAction } from '@ngrx/router-store';
 
 const initialState: SettingsTypeInterface = {

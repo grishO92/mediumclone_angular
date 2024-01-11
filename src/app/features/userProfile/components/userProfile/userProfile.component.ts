@@ -14,7 +14,7 @@ import {
   selectIsLoading,
   selectUserProfileData,
 } from '../../store/reducers';
-import { selectCurrentUser } from 'src/app/auth/store/reducers';
+import { selectCurrentUser } from 'src/app/features/auth/store/reducers';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { UserProfileInterface } from '../../types/userProfile.interface';
 import { CommonModule } from '@angular/common';

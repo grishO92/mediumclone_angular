@@ -1,6 +1,6 @@
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { userProfileActions } from 'src/app/userProfile/store/actions';
+import { userProfileActions } from 'src/app/features/userProfile/store/actions';
 import { UserProfileStateInterface } from '../types/userProfileState.interface';
 
 const initialState: UserProfileStateInterface = {
