@@ -1,6 +1,5 @@
-import { Injectable, Input, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import queryString from 'query-string';
-import { environment } from 'src/environments/environment';
 import { feedActions } from '../components/feed/store/actions';
 import { Store } from '@ngrx/store';
 
