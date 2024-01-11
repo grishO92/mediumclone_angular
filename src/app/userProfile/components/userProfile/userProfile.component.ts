@@ -71,8 +71,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   getApiUrl(): string {
-    const isFavorites = this.router.url.includes('favorites');
-    return isFavorites
+    return this.router.url.includes('favorites')
       ? `/articles?favorited=${this.slug}`
       : `/articles?author=${this.slug}`;
   }
